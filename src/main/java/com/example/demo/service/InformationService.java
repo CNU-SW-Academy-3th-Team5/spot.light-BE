@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.drew.imaging.jpeg.JpegProcessingException;
+import com.drew.imaging.ImageProcessingException;
 import com.example.demo.model.Information;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,7 +12,7 @@ public interface InformationService {
 
   List<Information> getAllInformations();
 
-  Information createInformation(MultipartFile files) throws IOException, JpegProcessingException;
+  Information createInformation(MultipartFile files) throws IOException, ImageProcessingException;
 
   public Optional<Information> getInformationById(String uuid);
 }

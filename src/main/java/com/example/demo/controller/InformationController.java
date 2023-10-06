@@ -1,17 +1,15 @@
 package com.example.demo.controller;
 
-import com.drew.imaging.jpeg.JpegProcessingException;
-import com.example.demo.model.Information;
+import com.drew.imaging.ImageProcessingException;
 import com.example.demo.service.InformationService;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @Controller
 public class InformationController {
@@ -35,7 +33,7 @@ public class InformationController {
   }
 
   @PostMapping("/information")
-  public String newInformation(@RequestParam("imagePath") MultipartFile file) throws IOException, JpegProcessingException {
+  public String newInformation(@RequestParam("imagePath") MultipartFile file) throws IOException, ImageProcessingException {
     informationService.createInformation(file);
     return "redirect:/information";
   }
