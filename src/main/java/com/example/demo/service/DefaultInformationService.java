@@ -50,16 +50,8 @@ public class DefaultInformationService implements InformationService {
     GpsDirectory gpsDirectory = metadata.getFirstDirectoryOfType(GpsDirectory.class);
 
     if(gpsDirectory != null) {
-      GeoLocation geoLocation = gpsDirectory.getGeoLocation();
-
-      if (geoLocation != null) {
-        latitude = geoLocation.getLatitude();
-        longitude = geoLocation.getLongitude();
-      } else {
-        System.out.println("이 사진에서는 geoLocation를 찾을 수 없습니다.");
-      }
-    } else {
-      System.out.println("이 사진에서는 gpsDirectory를 찾을 수 없습니다.");
+      latitude = gpsDirectory.getGeoLocation().getLatitude();
+      longitude = gpsDirectory.getGeoLocation().getLongitude();
     }
 
     var information = new Information(origName, uuid, extension, savedName, savedPath, loadPath, latitude, longitude);
