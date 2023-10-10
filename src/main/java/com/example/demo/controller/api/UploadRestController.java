@@ -44,10 +44,8 @@ public class UploadRestController {
     Metadata metadata = ImageMetadataReader.readMetadata(file);
     GpsDirectory gpsDirectory = metadata.getFirstDirectoryOfType(GpsDirectory.class);
 
-    if(gpsDirectory != null) {
-      latitude = gpsDirectory.getGeoLocation().getLatitude();
-      longitude = gpsDirectory.getGeoLocation().getLongitude();
-    }
+    latitude = gpsDirectory.getGeoLocation().getLatitude();
+    longitude = gpsDirectory.getGeoLocation().getLongitude();
 
     var information = new Information(origName, uuid, extension, savedName, savedPath, loadPath, latitude, longitude);
     return informationRepository.insert(information);
