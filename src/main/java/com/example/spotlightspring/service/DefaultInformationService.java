@@ -54,12 +54,20 @@ public class DefaultInformationService implements InformationService {
             Metadata metadata = ImageMetadataReader.readMetadata(file);
 
             GpsDirectory gpsDirectory = metadata.getFirstDirectoryOfType(GpsDirectory.class);
-            latitude = gpsDirectory.getGeoLocation().getLatitude();
-            longitude = gpsDirectory.getGeoLocation().getLongitude();
+
+            if(gpsDirectory != null) {
+                latitude = gpsDirectory.getGeoLocation().getLatitude();
+                longitude = gpsDirectory.getGeoLocation().getLongitude();
+            }
 
             ExifIFD0Directory exifIFD0Directory = metadata.getFirstDirectoryOfType(ExifIFD0Directory.class);
-            String camera = exifIFD0Directory.getString(ExifIFD0Directory.TAG_MODEL);
-            Date photoTime = exifIFD0Directory.getDate(ExifIFD0Directory.TAG_DATETIME);
+            String camera = null;
+            Date photoTime = null;
+
+            if(exifIFD0Directory != null) {
+                camera = exifIFD0Directory.getString(ExifIFD0Directory.TAG_MODEL);
+                photoTime = exifIFD0Directory.getDate(ExifIFD0Directory.TAG_DATETIME);
+            }
 
             InformationEntity informationEntity = new InformationEntity();
             informationEntity.setInformationUuid(informationUuid);

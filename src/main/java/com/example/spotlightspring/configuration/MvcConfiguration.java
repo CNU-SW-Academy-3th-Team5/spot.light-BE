@@ -1,4 +1,4 @@
-package com.example.spotlightspring.configration;
+package com.example.spotlightspring.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
