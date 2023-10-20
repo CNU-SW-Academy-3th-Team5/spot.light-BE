@@ -9,3 +9,6 @@ spring:
       maxFileSize: 10GB
       maxRequestSize: 100GB
       location: ./img/
+  jpa:
+    hibernate:
+      ddl-auto: create
